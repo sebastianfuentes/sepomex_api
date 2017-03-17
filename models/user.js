@@ -4,7 +4,7 @@ var connection = mongoose.createConnection("mongodb://localhost:27017/");
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, index: {unique: true}},
-  password: {type: String, required: true},
+  password: {type: String},
   email: {type: String, required: true, unique: true},
   god: {type: Boolean, default: false}
 });

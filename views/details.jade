@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.row
+    div.col.s12
+      h1.title Información del #{title}
+    div.col.s10.offset-s1
+      if typeof(information.message) !== 'undefined'
+        p Error #{information.message}
+      else
+        div.row
+          div.text.col.s2.offset-s4
+            p Código postal:
+          div.text.col.s2 
+            p #{information.zipCode}
+        div.row
+          div.text.col.s2.offset-s4
+            p Estado:
+          div.text.col.s2
+            p #{information.state}
+        div.row
+          div.text.col.s2.offset-s4
+            p Municipio:
+          div.text.col.s2
+            p #{information.municipality}
+        div.row
+          div.text.col.s2.offset-s4
+            p Colonias:
+          div.text.col.s2
+            p #{information.settlements}

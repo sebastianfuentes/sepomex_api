@@ -17,14 +17,14 @@ var createZip = function(req, res){
   });
   entry.save(function(err, entry){
     if (err){
-      res.status(300).json({'error': err}).end();
+      res.status(500).json({'error': err}).end();
     } else {
       res.status(200).json({"Message": "Code correctly created"}).end();
     }
   });
 };
 
-/* TODO: Make the fucking controller 
+/* TODO: Make the fucking controller
 updateZip controller.
 Update the postal code information
 */
@@ -36,7 +36,7 @@ This controller returns all existing zip codes in the DB.
   * Returns 200 with the codes in json format.
 */
 var getZips = function(req, res){
-  zip.find({}, function(err, codes){
+  zip.find({}, {'_id': false, '__v': false}, function(err, codes){
     if (err) {
       res.status(500).json({'error': err}).end();
     } else {
@@ -56,12 +56,12 @@ This controller searc on the zip schema for any match.
  * Returns 200 with the code information on json format.
 */
 var getZip = function(req, res){
-  zip.findOne({'zipCode': req.params.zip}, function(err, code){
+  zip.findOne({'zipCode': req.params.zip}, {'_id': false, '__v': false}, function(err, code){
     if (err){
       res.status(500).json({'error': err}).end()
     } else {
       if (code === null){
-          res.status(404).json({"message": "code not found"}).end();
+          res.status(404).json({"message": "code " + req.params.zip + " not found"}).end();
       }
       else {
         res.status(200).json(code).end();
@@ -70,7 +70,6 @@ var getZip = function(req, res){
   })
 };
 
-
 /* getStateZips controller.
 Given a state, returns all postal codes belonging to it.
   * Returns 500 and message error if something goes wrong.
@@ -78,7 +77,7 @@ Given a state, returns all postal codes belonging to it.
   * Returns 200 and codes.
 */
 var getStateZips = function(req, res){
-  zip.find({'state': req.params.state}, function(err, codes){
+  zip.find({'state': req.params.state}, {'_id': false, '__v': false}, function(err, codes){
     if (err){
       res.status(500).json({'error': err}).end();
     } else {
@@ -98,7 +97,8 @@ Given a municipality, returns all postal codes belonging to it.
   * Returns 200 and codes.
 */
 var getMunicipalityZips = function(req, res){
-  zip.find({'municipality': req.params.municipality}, function(err, codes){
+  municipality = req.params.municipality.replace('-', ' ')
+  zip.find({'municipality': req.params.municipality}, {'_id': false, '__v': false}, function(err, codes){
     if (err){
       res.status(500).json({"error": err}).end();
     } else {

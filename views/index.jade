@@ -1,6 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  h2 Greetings.
-  p We currently have 145955 postal codes registered
+  div.row
+    div.col.s12
+      h1.title Códigos postales
+    div.col.s10.offset-s1
+      p.text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in lorem fermentum, iaculis diam id, hendrerit orci. In hac habitasse platea dictumst. Nullam eu tellus a neque elementum viverra venenatis at dui. In eleifend, sapien at sagittis eleifend, elit arcu mollis massa, a ultricies sem ipsum sed mi. Quisque ut quam et ante sollicitudin tincidunt. Vivamus nisi eros, suscipit vel pulvinar a, gravida et orci. Duis id eleifend risus. Fusce tincidunt ante at sapien scelerisque suscipit. Fusce velit turpis, rhoncus sit amet libero quis, ornare tempor dolor. Proin ac suscipit augue, in ultrices ligula. Aenean et felis sed leo tristique lacinia vitae vitae metus. Ut cursus nisi ac turpis porttitor maximus sed et risus. Ut id dapibus arcu.
+    div.col.s10.offset-s1
+      form(method='GET', action='/codigos-postales/buscar/')
+        div.col.offset-s4 
+          input#zip(name="zip", placeholder="Código")
+        button.btn(type="submit", value="Buscar")
+          img(src='images/search.png').material-icons
