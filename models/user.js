@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
+var connection = require('../config/db');
 // TODO: Fix hardcoded connection to the database, maybe put it in other part
-var connection = mongoose.createConnection("mongodb://localhost:27017/");
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true, index: {unique: true}},

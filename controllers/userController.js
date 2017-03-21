@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 var user = require('../models/user');
 
-var userController = {}
+var controller = {}
 
 /* createUser controller.
 This controller allows user to register.
 NOTE: Administrators must be created only from the DB.
 */
-var createUser = function(req, res){
+controller.createUser = function(req, res){
   var entry = new user({
     username: req.body.username,
     password: req.body.password,
@@ -26,7 +26,7 @@ var createUser = function(req, res){
 This controller lists all users, it'll require to be administrator to execute this.
 TODO: Add admin validation hehe xd
 */
-var listUsers = function(req, res){
+controller.listUsers = function(req, res){
   user.find({}, function(err, users){
     if (err){
       res.status(500).json({'error': err}).end();
@@ -36,6 +36,4 @@ var listUsers = function(req, res){
   });
 }
 
-userController.createUser = createUser;
-userController.listUsers = listUsers;
-module.exports = userController;
+module.exports = controller;

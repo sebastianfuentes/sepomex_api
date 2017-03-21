@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId
 // TODO: Fix hardcoded connetion to the database, maybe put it in other part
-var connection = mongoose.createConnection("mongodb://localhost:27017/");
+var connection = require('../config/db');
 
 var requestedZipSchema = mongoose.Schema({
   user: {type: ObjectId, required: true},

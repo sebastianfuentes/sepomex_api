@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 // TODO: Fix hardcoded connection to the database, maybe put it in other part
-var connection = mongoose.createConnection("mongodb://localhost:27017/");
+var connection = require('../config/db');
 
 var zipSchema = mongoose.Schema({
   zipCode: {type: String,
